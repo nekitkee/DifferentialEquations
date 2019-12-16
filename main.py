@@ -1,4 +1,4 @@
-
+import math
 import matplotlib.pyplot as plt
 
 #grid step
@@ -14,6 +14,8 @@ a =0.9
 b=0.2
 funtask= lambda x: a * x - b * x ** 2
 
+#alalytic form
+funtask_an = lambda x : 4.5*math.exp(0.9*x)/(3.5+math.exp(0.9*x))
 
 ####test function from workbook
 c=-3
@@ -67,8 +69,19 @@ xe, ye = euler(funtask, y0, t, h1)
 # print(x)
 # print(y)
 
+#array of reall y (analytic form)
+yreall = []
+for x in xab :
+    yreall.append(funtask_an(x))
+
 plt.plot(xab, yab)
+plt.plot(xab,yreall)
+plt.xlabel("Adams-Bashforth and analytic")
+plt.show()
+
 plt.plot(xe, ye)
+plt.plot(xab,yreall)
+plt.xlabel("Euler and analytic")
 plt.show()
 
 
